@@ -9,16 +9,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg1: "var(--cream)",
-        bg2: "var(--dark-cream)",
-        primary: "var(--color-rose)",
-        accent: "var(--color-sage)",
-        neutral: "var(--color-dark-gray)",
+        cream: "var(--cream)",
+        "dark-cream": "var(--dark-cream)",
+        rose: "var(--rose)",
+        sage: "var(--sage)",
+        "dark-gray": "var(--dark-gray)",
       },
       fontFamily: {
         sans: "var(--font-sans)",
         serif: "var(--font-serif)",
-        accent: "var(--font-accent)"
+        accent: "var(--font-accent)",
       },
     },
   },
