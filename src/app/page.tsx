@@ -4,17 +4,18 @@ import Button from "@/components/button";
 import CarouselSlide from "@/components/carouselslide";
 
 export default function Home() {
+
   const doPortfolioClick = (): void => {
-    alert("Clicked portfolio");
+    alert("Portfolio");
   };
 
   return (
     <>
       {/* Info */}
-      
+
       {/* Image Carousel  */}
-      <div className="grid content-center h-[300px] overflow-hidden">
-        <div className="flex w-[calc(400px*18)] animate-slideCarousel">
+      <div className="grid content-center h-[calc(15vh*3)] overflow-hidden">
+        <div className="flex w-[calc(15vh*4*18)] animate-slideCarousel">
           
           <CarouselSlide image="/homepage-carousel/1.jpg"/>
           <CarouselSlide image="/homepage-carousel/2.jpg"/>
@@ -67,7 +68,7 @@ export default function Home() {
         <div className="basis-4/10 rounded-full">
           <img
             src="/emma.jpg"
-            alt="Photo of the photographer"
+            alt="Image of the photographer"
             className="w-full object-contain overflow-hidden rounded-full"
           />
         </div>
