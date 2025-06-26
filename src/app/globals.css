@@ -2,7 +2,7 @@
 
 :root {
   --bg1: #ffffff;
-  --bg2: #F2EEE8;
+  --bg2: #efeeed;
   --primary: #B57A90;
   --neutral: #2e2c2c;
   --accent: #AFC7B4;
@@ -28,16 +28,32 @@ h2 {
     font-family: var(--font-accent);
   }
 
+  .bg1 {
+    color: var(--bg1);
+  }
+
+  .bg-bg1 {
+    background-color: var(--bg1);
+  }
+
+  .bg2 {
+    color: var(--bg2);
+  }
+
+  .bg-bg2 {
+    background-color: var(--bg2);
+  }
+
   .neutral {
     color: var(--neutral);
   }
 
-  .primary {
-    color: var(--primary);
-  }
-
   .bg-neutral {
     background-color: var(--neutral);
+  }
+
+  .primary {
+    color: var(--primary);
   }
 
   .bg-primary {
