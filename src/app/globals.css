@@ -24,6 +24,8 @@ h2 {
 }
 
 @layer utilities {
+
+  /* Animation for carousel */
   @keyframes slideCarousel {
     0% {
       transform: translateX(0);
@@ -32,9 +34,8 @@ h2 {
       transform: translateX(calc(-15vh * 4 * 9));
     }
   }
-
   .animate-slideCarousel {
-    animation: slideCarousel 30s linear infinite;
+    animation: slideCarousel 45s linear infinite;
   }
 
   .font-accent {
@@ -44,7 +45,6 @@ h2 {
   .bg1 {
     color: var(--bg1);
   }
-
   .bg-bg1 {
     background-color: var(--bg1);
   }
@@ -52,7 +52,6 @@ h2 {
   .bg2 {
     color: var(--bg2);
   }
-
   .bg-bg2 {
     background-color: var(--bg2);
   }
@@ -60,7 +59,6 @@ h2 {
   .neutral {
     color: var(--neutral);
   }
-
   .bg-neutral {
     background-color: var(--neutral);
   }
@@ -68,7 +66,6 @@ h2 {
   .primary {
     color: var(--primary);
   }
-
   .bg-primary {
     background-color: var(--primary);
   }

@@ -14,7 +14,7 @@ export default function Home() {
       {/* Info */}
 
       {/* Image Carousel  */}
-      <div className="grid content-center h-[calc(15vh*3)] overflow-hidden">
+      <div className="flex flex-row content-center h-[calc(15vh*3)] overflow-hidden">
         <div className="flex w-[calc(15vh*4*18)] animate-slideCarousel">
           
           <CarouselSlide image="/homepage-carousel/1.jpg"/>
