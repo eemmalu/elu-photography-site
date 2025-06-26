@@ -1,6 +1,7 @@
 "use client";
 
-import Button from "../components/button";
+import Button from "@/components/button";
+import CarouselSlide from "@/components/carouselslide";
 
 export default function Home() {
   const doPortfolioClick = (): void => {
@@ -9,11 +10,33 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row py-[calc(8px+4vw)] px-[calc(5px+10vw)] gap-16 justify-center items-center bg-bg2"></div>
-
+      {/* Info */}
+      
       {/* Image Carousel  */}
-      <div className="flex flex-col md:flex-row py-[calc(8px+4vw)] px-[calc(5px+10vw)] gap-16 justify-center items-center">
-        Gallery
+      <div className="grid content-center h-[300px] overflow-hidden">
+        <div className="flex w-[calc(400px*18)] animate-slideCarousel">
+          
+          <CarouselSlide image="/homepage-carousel/1.jpg"/>
+          <CarouselSlide image="/homepage-carousel/2.jpg"/>
+          <CarouselSlide image="/homepage-carousel/3.jpg"/>
+          <CarouselSlide image="/homepage-carousel/4.jpg"/>
+          <CarouselSlide image="/homepage-carousel/5.jpg"/>
+          <CarouselSlide image="/homepage-carousel/6.jpg"/>
+          <CarouselSlide image="/homepage-carousel/7.jpg"/>
+          <CarouselSlide image="/homepage-carousel/8.jpg"/>
+          <CarouselSlide image="/homepage-carousel/9.jpg"/>
+
+          <CarouselSlide image="/homepage-carousel/1.jpg"/>
+          <CarouselSlide image="/homepage-carousel/2.jpg"/>
+          <CarouselSlide image="/homepage-carousel/3.jpg"/>
+          <CarouselSlide image="/homepage-carousel/4.jpg"/>
+          <CarouselSlide image="/homepage-carousel/5.jpg"/>
+          <CarouselSlide image="/homepage-carousel/6.jpg"/>
+          <CarouselSlide image="/homepage-carousel/7.jpg"/>
+          <CarouselSlide image="/homepage-carousel/8.jpg"/>
+          <CarouselSlide image="/homepage-carousel/9.jpg"/>
+
+        </div>
       </div>
 
       {/* About Me */}
