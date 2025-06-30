@@ -9,9 +9,23 @@ export default function Home() {
     alert("Portfolio");
   };
 
+  const doBookClick = (): void => {
+    alert("Book");
+  };
+
   return (
     <>
       {/* Info */}
+      <div className="flex flex-col py-[calc(12px+4vw)] px-[calc(5px+10vw)] justify-center items-center bg-bg2">
+        <h2>welcome!</h2>
+        <div className="flex font-bold primary">I'M BASED IN</div>
+        <div className="flex p-0 mb-5">greater Seattle area</div>
+        <div className="flex font-bold primary">I SPECIALIZE IN</div>
+        <div className="flex p-0">senior & grad photos</div>
+        <div className="flex p-0]">individual portraits</div>
+        <div className="flex p-0 mb-5">...anything with a story</div>
+        <Button label="Book Now!" onClickAction={doBookClick}/>
+      </div>
 
       {/* Image Carousel  */}
       <div className="flex flex-row content-center h-[calc(15vh*3)] overflow-hidden">
@@ -45,7 +59,7 @@ export default function Home() {
         {/* Left Side */}
         <div className="flex flex-col basis-6/10 gap-6">
           <div>
-            <h2>Hi, I'm Emma!</h2>
+            <h2>hi, i'm emma!</h2>
             <div className="font-accent primary">(the photographer)</div>
           </div>
           <div className="flex">

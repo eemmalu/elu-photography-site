@@ -2,16 +2,17 @@
 
 :root {
   --bg1: #ffffff;
-  --bg2: #efeeed;
+  --bg2: #f7f7f6;
   --primary: #b57a90;
   --neutral: #2e2c2c;
   --accent: #afc7b4;
 
   --font-accent: "Sanchez", serif;
+  --font-serif: "Prata", serif;
 }
 
 body {
-  background: var(--bg1);
+  background: var(--bg2);
   color: var(--neutral);
   font-family: var(--font-sans);
   font-size: calc(10px + 0.6vw);
@@ -19,12 +20,11 @@ body {
 
 h2 {
   font-family: var(--font-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: calc(30px + 2vw);
 }
 
 @layer utilities {
-
   /* Animation for carousel */
   @keyframes slideCarousel {
     0% {
@@ -40,6 +40,10 @@ h2 {
 
   .font-accent {
     font-family: var(--font-accent);
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
   }
 
   .bg1 {
