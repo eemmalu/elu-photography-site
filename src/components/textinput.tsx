@@ -1,17 +1,16 @@
-import { ChangeEvent } from "react";
-
 type TextInputProps = {
   label: string;
+  type: string;
   value: string;
   doChange: (newValue: string) => void;
 };
 
-export default function TextInput({ label, value, doChange }: TextInputProps) {
+export default function TextInput({ label, type, value, doChange }: TextInputProps) {
   return (
     <>
       <div>{label}:</div>
       <input
-        type="text"
+        type={type}
         value={value}
         onChange={(e) => {doChange(e.target.value)}}
         className="border-1 rounded-sm p-1 mb-2"

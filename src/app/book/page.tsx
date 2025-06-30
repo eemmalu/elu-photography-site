@@ -13,7 +13,6 @@ type FormData = {
   name: string;
   email: string;
   dateType: string;
-  dateFlexible: boolean | undefined;
   shootType: Shoots;
   people: number;
   duration: number;
@@ -26,7 +25,6 @@ export default function Book() {
     name: "",
     email: "",
     dateType: "",
-    dateFlexible: undefined,
     shootType: undefined,
     people: 0,
     duration: 0,
@@ -44,13 +42,6 @@ export default function Book() {
 
   const handleDateTypeChange = (newDateType: string) => {
     setFormData((prev) => ({ ...prev, dateType: newDateType }));
-    if (newDateType == "--") {
-      setFormData((prev) => ({ ...prev, dateFlexible: undefined }));
-    } else if (newDateType == "I have a date (or a few dates) in mind!") {
-      setFormData((prev) => ({ ...prev, dateFlexible: false }));
-    } else if (newDateType == "My dates are flexible!") {
-      setFormData((prev) => ({ ...prev, dateFlexible: true }));
-    }
   };
 
   return (
@@ -64,11 +55,13 @@ export default function Book() {
       </div>
       <div className="flex flex-col py-[calc(12px+4vw)] px-[calc(5px+10vw)] bg-bg1">
         <TextInput
+          type="text"
           label="Name"
           value={formData.name}
           doChange={handleNameChange}
         />
         <TextInput
+          type="email"
           label="Email"
           value={formData.email}
           doChange={handleEmailChange}
