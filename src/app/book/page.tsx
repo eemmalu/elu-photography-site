@@ -1,19 +1,13 @@
 "use client";
 import { useState } from "react";
 import TextInput from "@/components/textinput";
-
-type Shoots =
-  | undefined
-  | { kind: "Senior/Grad" }
-  | { kind: "Engagement" }
-  | { kind: "Prom" }
-  | { kind: "Other"; details: string };
+import Button from "@/components/button";
 
 type FormData = {
   name: string;
   email: string;
   dateType: string;
-  shootType: Shoots;
+  shootType: string;
   people: number;
   duration: number;
   notes: string;
@@ -24,8 +18,8 @@ export default function Book() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    dateType: "",
-    shootType: undefined,
+    dateType: "--",
+    shootType: "--",
     people: 0,
     duration: 0,
     notes: "",
@@ -76,6 +70,7 @@ export default function Book() {
           <option>I have a date (or a few dates) in mind!</option>
           <option>My dates are flexible!</option>
         </select>
+        <Button label="Submit"/>
       </div>
     </>
   );
