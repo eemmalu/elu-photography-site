@@ -4,15 +4,6 @@ import Button from "@/components/button";
 import CarouselSlide from "@/components/carouselslide";
 
 export default function Home() {
-
-  const doPortfolioClick = (): void => {
-    alert("Portfolio");
-  };
-
-  const doBookClick = (): void => {
-    alert("Book");
-  };
-
   return (
     <>
       {/* Info */}
@@ -24,33 +15,31 @@ export default function Home() {
         <div className="flex p-0">senior & grad photos</div>
         <div className="flex p-0]">individual portraits</div>
         <div className="flex p-0 mb-5">...anything with a story</div>
-        <Button label="Book Now!" onClickAction={doBookClick}/>
+        <Button label="Book Now!" linkTo="book" />
       </div>
 
       {/* Image Carousel  */}
       <div className="flex flex-row content-center h-[calc(15vh*3)] overflow-hidden">
         <div className="flex w-[calc(15vh*4*18)] animate-slideCarousel">
-          
-          <CarouselSlide image="/homepage-carousel/1.jpg"/>
-          <CarouselSlide image="/homepage-carousel/2.jpg"/>
-          <CarouselSlide image="/homepage-carousel/3.jpg"/>
-          <CarouselSlide image="/homepage-carousel/4.jpg"/>
-          <CarouselSlide image="/homepage-carousel/5.jpg"/>
-          <CarouselSlide image="/homepage-carousel/6.jpg"/>
-          <CarouselSlide image="/homepage-carousel/7.jpg"/>
-          <CarouselSlide image="/homepage-carousel/8.jpg"/>
-          <CarouselSlide image="/homepage-carousel/9.jpg"/>
+          <CarouselSlide image="/homepage-carousel/1.jpg" />
+          <CarouselSlide image="/homepage-carousel/2.jpg" />
+          <CarouselSlide image="/homepage-carousel/3.jpg" />
+          <CarouselSlide image="/homepage-carousel/4.jpg" />
+          <CarouselSlide image="/homepage-carousel/5.jpg" />
+          <CarouselSlide image="/homepage-carousel/6.jpg" />
+          <CarouselSlide image="/homepage-carousel/7.jpg" />
+          <CarouselSlide image="/homepage-carousel/8.jpg" />
+          <CarouselSlide image="/homepage-carousel/9.jpg" />
 
-          <CarouselSlide image="/homepage-carousel/1.jpg"/>
-          <CarouselSlide image="/homepage-carousel/2.jpg"/>
-          <CarouselSlide image="/homepage-carousel/3.jpg"/>
-          <CarouselSlide image="/homepage-carousel/4.jpg"/>
-          <CarouselSlide image="/homepage-carousel/5.jpg"/>
-          <CarouselSlide image="/homepage-carousel/6.jpg"/>
-          <CarouselSlide image="/homepage-carousel/7.jpg"/>
-          <CarouselSlide image="/homepage-carousel/8.jpg"/>
-          <CarouselSlide image="/homepage-carousel/9.jpg"/>
-
+          <CarouselSlide image="/homepage-carousel/1.jpg" />
+          <CarouselSlide image="/homepage-carousel/2.jpg" />
+          <CarouselSlide image="/homepage-carousel/3.jpg" />
+          <CarouselSlide image="/homepage-carousel/4.jpg" />
+          <CarouselSlide image="/homepage-carousel/5.jpg" />
+          <CarouselSlide image="/homepage-carousel/6.jpg" />
+          <CarouselSlide image="/homepage-carousel/7.jpg" />
+          <CarouselSlide image="/homepage-carousel/8.jpg" />
+          <CarouselSlide image="/homepage-carousel/9.jpg" />
         </div>
       </div>
 
@@ -72,11 +61,7 @@ export default function Home() {
             I have 4+ years of photography experience, and am currently pursuing
             my Bachelor’s at the University of Washington.
           </div>
-          <Button
-            label="Portfolio"
-            onClickAction={doPortfolioClick}
-            className="w-fit"
-          />
+          <Button label="Portfolio" linkTo="portfolio" className="w-fit" />
         </div>
         {/* Right Side */}
         <div className="basis-4/10 rounded-full">
