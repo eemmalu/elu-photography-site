@@ -61,7 +61,7 @@ export default function Home() {
             I have 4+ years of photography experience, and am currently pursuing
             my Bachelor’s at the University of Washington.
           </div>
-          <Button label="Portfolio" linkTo="portfolio" className="w-fit" />
+          <Button label="Portfolio" linkTo="portfolio" />
         </div>
         {/* Right Side */}
         <div className="basis-4/10 rounded-full">

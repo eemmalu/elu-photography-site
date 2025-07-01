@@ -19,7 +19,7 @@ export default function Button({
       <Link href={`/${linkTo}`}>
         <button
           onClick={onClick}
-          className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 ${className}`}
+          className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 w-fit ${className}`}
         >
           {label}
         </button>
@@ -29,7 +29,7 @@ export default function Button({
     return (
       <Link href={`/${linkTo}`}>
         <button
-          className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 ${className}`}
+          className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 w-fit ${className}`}
         >
           {label}
         </button>
@@ -39,7 +39,7 @@ export default function Button({
     return (
       <button
         onClick={onClick}
-        className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 ${className}`}
+        className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 w-fit ${className}`}
       >
         {label}
       </button>
@@ -47,7 +47,7 @@ export default function Button({
   } else {
     return (
       <button
-        className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 ${className}`}
+        className={`font-sans italic py-2 px-8 bg1 bg-primary rounded-md cursor-pointer transition duration-300 ease-in-out hover:scale-110 w-fit ${className}`}
       >
         {label}
       </button>
