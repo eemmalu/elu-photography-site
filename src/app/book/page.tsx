@@ -9,8 +9,8 @@ import Button from "@/components/button";
 type FormData = {
   name: string;
   email: string;
-  dateType: string;
-  shootType: string;
+  date: { kind: string; details: string };
+  shootType: { kind: string; other: string };
   people: number;
   duration: string;
   location: string;
@@ -23,8 +23,8 @@ export default function Book() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    dateType: "--",
-    shootType: "--",
+    date: { kind: "--", details: "" },
+    shootType: { kind: "--", other: "" },
     people: 1,
     duration: "1 hour ($80)",
     location: "",
@@ -41,14 +41,6 @@ export default function Book() {
     setFormData((prev) => ({ ...prev, email: newEmail }));
   };
 
-  const handleDateTypeChange = (newDateType: string) => {
-    setFormData((prev) => ({ ...prev, dateType: newDateType }));
-  };
-
-  const handleShootTypeChange = (newShootType: string) => {
-    setFormData((prev) => ({ ...prev, shootType: newShootType }));
-  };
-
   const handlePeopleChange = (newPeople: string) => {
     setFormData((prev) => ({ ...prev, people: parseInt(newPeople) }));
   };
@@ -61,10 +53,11 @@ export default function Book() {
     setFormData((prev) => ({ ...prev, location: newLocation }));
   };
 
+  // Submitting the inquiry
   const handleSubmit = async () => {
     if (formData.name == "") {
-        alert("Please include a name field")
-        return;
+      alert("Please include a name field");
+      return;
     }
     try {
       const docRef = await addDoc(collection(db, "inquiries"), formData);
@@ -75,6 +68,82 @@ export default function Book() {
     }
   };
 
+  // Conditional render for date details
+  let dateDetails;
+  if (formData.date.kind === "I have a date (or a few dates) in mind") {
+    dateDetails = (
+      <div>
+        <div className="font-semibold">
+          Please list the dates (month/day/year) with available time ranges:
+        </div>
+        <input
+          type="text"
+          value={formData.date.details}
+          onChange={(e) => {
+            setFormData((prev) => ({
+              ...prev,
+              date: { kind: formData.date.kind, details: e.target.value },
+            }));
+          }}
+          className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+        ></input>
+      </div>
+    );
+  } else if (formData.date.kind === "My dates are flexible") {
+    dateDetails = (
+      <div>
+        <div className="font-semibold">
+          Please provide available days of the week and the time ranges + any
+          additional details:
+        </div>
+        <input
+          type="text"
+          value={formData.date.details}
+          onChange={(e) => {
+            setFormData((prev) => ({
+              ...prev,
+              date: { kind: formData.date.kind, details: e.target.value },
+            }));
+          }}
+          className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+        ></input>
+      </div>
+    );
+  } else {
+    dateDetails = null;
+  }
+
+  // Conditional render for shoot type
+  let shootDetails;
+  if (
+    formData.shootType.kind != "--" &&
+    formData.shootType.kind != "Senior/Grad" &&
+    formData.shootType.kind != "Prom"
+  ) {
+    shootDetails = (
+      <div>
+        <div className="font-semibold">Please specify:</div>
+        <input
+          type="text"
+          value={formData.shootType.other}
+          onChange={(e) => {
+            setFormData((prev) => ({
+              ...prev,
+              shootType: {
+                kind: formData.shootType.kind,
+                other: e.target.value,
+              },
+            }));
+          }}
+          className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+        ></input>
+      </div>
+    );
+  } else {
+    shootDetails = null;
+  }
+
+  // Already submitted
   if (formData.submitted) {
     return (
       <div className="py-[20vh] px-[calc(5px+10vw)]">
@@ -85,7 +154,10 @@ export default function Book() {
         </div>
       </div>
     );
-  } else {
+  }
+
+  // Not submitted - show form
+  else {
     return (
       <>
         <div className="py-[calc(12px+4vw)] px-[calc(5px+10vw)]">
@@ -117,8 +189,16 @@ export default function Book() {
           <div>
             <div className="font-semibold">Date:</div>
             <select
-              onChange={(e) => handleDateTypeChange(e.target.value)}
-              value={formData.dateType}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  date: {
+                    kind: e.target.value,
+                    details: "",
+                  },
+                }))
+              }
+              value={formData.date.kind}
               className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
               <option>--</option>
@@ -127,12 +207,23 @@ export default function Book() {
             </select>
           </div>
 
+          {/* Date Details */}
+          {dateDetails}
+
           {/* Shoot Type */}
           <div>
             <div className="font-semibold">Type of shoot:</div>
             <select
-              onChange={(e) => handleShootTypeChange(e.target.value)}
-              value={formData.shootType}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  shootType: {
+                    kind: e.target.value,
+                    other: "",
+                  },
+                }))
+              }
+              value={formData.shootType.kind}
               className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
               <option>--</option>
@@ -141,6 +232,9 @@ export default function Book() {
               <option>Other (please specify!)</option>
             </select>
           </div>
+
+          {/* Shoot Details */}
+          {shootDetails}
 
           {/* People Count */}
           <TextInput
