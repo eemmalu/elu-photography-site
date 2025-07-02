@@ -62,6 +62,10 @@ export default function Book() {
   };
 
   const handleSubmit = async () => {
+    if (formData.name == "") {
+        alert("Please include a name field")
+        return;
+    }
     try {
       const docRef = await addDoc(collection(db, "inquiries"), formData);
       console.log("Document written with ID: ", docRef.id);
@@ -73,7 +77,7 @@ export default function Book() {
 
   if (formData.submitted) {
     return (
-      <div className="py-[20vh] px-[calc(5px+10vw)] bg-bg2">
+      <div className="py-[20vh] px-[calc(5px+10vw)]">
         <h2>thanks for your inquiry!</h2>
         <h2>keep an eye out on your email</h2>
         <div className="flex font-bold primary">
@@ -84,7 +88,7 @@ export default function Book() {
   } else {
     return (
       <>
-        <div className="py-[calc(12px+4vw)] px-[calc(5px+10vw)] bg-bg2">
+        <div className="py-[calc(12px+4vw)] px-[calc(5px+10vw)]">
           <h2>ready to book?</h2>
           <h2>fill out the inquiry below!</h2>
           <div className="flex font-bold primary">
@@ -92,7 +96,7 @@ export default function Book() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 py-[calc(12px+4vw)] px-[calc(5px+10vw)] bg-bg1">
+        <div className="flex flex-col gap-6 pb-[calc(12px+4vw)] px-[calc(5px+10vw)]">
           {/* Name */}
           <TextInput
             type="text"
@@ -115,7 +119,7 @@ export default function Book() {
             <select
               onChange={(e) => handleDateTypeChange(e.target.value)}
               value={formData.dateType}
-              className="border-1 rounded-sm p-1 w-full"
+              className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
               <option>--</option>
               <option>I have a date (or a few dates) in mind</option>
@@ -129,7 +133,7 @@ export default function Book() {
             <select
               onChange={(e) => handleShootTypeChange(e.target.value)}
               value={formData.shootType}
-              className="border-1 rounded-sm p-1 w-full"
+              className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
               <option>--</option>
               <option>Senior/Grad</option>
@@ -152,7 +156,7 @@ export default function Book() {
             <select
               onChange={(e) => handleDurationChange(e.target.value)}
               value={formData.duration}
-              className="border-1 rounded-sm p-1 w-full"
+              className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
               <option>1 hour ($80)</option>
               <option>1.5 hours ($120)</option>
@@ -176,7 +180,7 @@ export default function Book() {
           <div>
             <div className="font-semibold">Additional notes:</div>
             <textarea
-              className="border-1 rounded-sm py-1 px-2 m-0 w-full"
+              className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
               onChange={(e) => {
                 setFormData((prev) => ({ ...prev, notes: e.target.value }));
               }}
@@ -188,7 +192,7 @@ export default function Book() {
           <div>
             <div className="font-semibold">Questions:</div>
             <textarea
-              className="border-1 rounded-sm py-1 px-2 m-0 w-full"
+              className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
               onChange={(e) => {
                 setFormData((prev) => ({ ...prev, questions: e.target.value }));
               }}
