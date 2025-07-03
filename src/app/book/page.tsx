@@ -15,6 +15,7 @@ type FormData = {
   location: string;
   notes: string;
   questions: string;
+  incompleteMsg: string;
   submitted: boolean;
 };
 
@@ -29,15 +30,39 @@ export default function Book() {
     location: "",
     notes: "",
     questions: "",
+    incompleteMsg: "",
     submitted: false,
   });
 
   // Submitting the inquiry
   const handleSubmit = async () => {
     if (formData.name == "") {
-      alert("Please include a name field");
+      setFormData((prev) => ({
+        ...prev,
+        incompleteMsg: "Please provide a name",
+      }));
+      return;
+    } else if (formData.email == "") {
+        setFormData((prev) => ({
+        ...prev,
+        incompleteMsg: "Please provide an email",
+      }));
+      return;
+    } else if (formData.date.kind == "--" || formData.date.details == "") {
+        setFormData((prev) => ({
+        ...prev,
+        incompleteMsg: "Please specify date",
+      }));
+      return;
+    } else if (formData.shootType.kind == "--" || (formData.shootType.kind == "Other" && formData.shootType.other == "")) {
+        setFormData((prev) => ({
+        ...prev,
+        incompleteMsg: "Please specify shoot type",
+      }));
       return;
     }
+
+
     try {
       const docRef = await addDoc(collection(db, "inquiries"), formData);
       console.log("Document written with ID: ", docRef.id);
@@ -217,7 +242,7 @@ export default function Book() {
               <option>--</option>
               <option>Senior/Grad</option>
               <option>Prom</option>
-              <option>Other (please specify!)</option>
+              <option>Other</option>
             </select>
           </div>
 
@@ -226,10 +251,7 @@ export default function Book() {
 
           {/* People Count */}
           <div>
-            <div className="font-semibold">
-              Number of people (in the photos—any number of friends/fam is
-              welcome to watch):
-            </div>
+            <div className="font-semibold">Number of people:</div>
             <input
               type="number"
               value={formData.people}
@@ -241,6 +263,10 @@ export default function Book() {
               }}
               className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
             ></input>
+            <div>
+              (Participating in the photos—any number of friends/fam is welcome
+              to watch)
+            </div>
           </div>
 
           {/* Duration */}
@@ -307,6 +333,11 @@ export default function Book() {
           </div>
 
           <Button label="Submit" className="mt-2" onClick={handleSubmit} />
+          {formData.incompleteMsg != "" ? (
+            <div>**{formData.incompleteMsg}</div>
+          ) : (
+            <></>
+          )}
         </div>
       </>
     );
