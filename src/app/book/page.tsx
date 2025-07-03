@@ -3,7 +3,6 @@ import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-import TextInput from "@/components/textinput";
 import Button from "@/components/button";
 
 type FormData = {
@@ -32,26 +31,6 @@ export default function Book() {
     questions: "",
     submitted: false,
   });
-
-  const handleNameChange = (newName: string) => {
-    setFormData((prev) => ({ ...prev, name: newName }));
-  };
-
-  const handleEmailChange = (newEmail: string) => {
-    setFormData((prev) => ({ ...prev, email: newEmail }));
-  };
-
-  const handlePeopleChange = (newPeople: string) => {
-    setFormData((prev) => ({ ...prev, people: parseInt(newPeople) }));
-  };
-
-  const handleDurationChange = (newDuration: string) => {
-    setFormData((prev) => ({ ...prev, duration: newDuration }));
-  };
-
-  const handleLocationChange = (newLocation: string) => {
-    setFormData((prev) => ({ ...prev, location: newLocation }));
-  };
 
   // Submitting the inquiry
   const handleSubmit = async () => {
@@ -96,8 +75,7 @@ export default function Book() {
           Please provide available days of the week and the time ranges + any
           additional details:
         </div>
-        <input
-          type="text"
+        <textarea
           value={formData.date.details}
           onChange={(e) => {
             setFormData((prev) => ({
@@ -106,7 +84,7 @@ export default function Book() {
             }));
           }}
           className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
-        ></input>
+        ></textarea>
       </div>
     );
   } else {
@@ -170,20 +148,30 @@ export default function Book() {
 
         <div className="flex flex-col gap-6 pb-[calc(12px+4vw)] px-[calc(5px+10vw)]">
           {/* Name */}
-          <TextInput
-            type="text"
-            label="Name"
-            value={formData.name}
-            doChange={handleNameChange}
-          />
+          <div>
+            <div className="font-semibold">Name:</div>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, name: e.target.value }));
+              }}
+              className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+            ></input>
+          </div>
 
           {/* Email */}
-          <TextInput
-            type="email"
-            label="Email"
-            value={formData.email}
-            doChange={handleEmailChange}
-          />
+          <div>
+            <div className="font-semibold">Email:</div>
+            <input
+              type="text"
+              value={formData.email}
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, email: e.target.value }));
+              }}
+              className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+            ></input>
+          </div>
 
           {/* Date Type */}
           <div>
@@ -237,18 +225,34 @@ export default function Book() {
           {shootDetails}
 
           {/* People Count */}
-          <TextInput
-            label="Number of people (in the photos—any number of friends/fam is welcome to watch)"
-            type="number"
-            value={formData.people}
-            doChange={handlePeopleChange}
-          />
+          <div>
+            <div className="font-semibold">
+              Number of people (in the photos—any number of friends/fam is
+              welcome to watch):
+            </div>
+            <input
+              type="number"
+              value={formData.people}
+              onChange={(e) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  people: parseInt(e.target.value),
+                }));
+              }}
+              className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+            ></input>
+          </div>
 
           {/* Duration */}
           <div>
             <div className="font-semibold">Duration:</div>
             <select
-              onChange={(e) => handleDurationChange(e.target.value)}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  duration: e.target.value,
+                }))
+              }
               value={formData.duration}
               className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
@@ -263,12 +267,20 @@ export default function Book() {
           </div>
 
           {/* Location */}
-          <TextInput
-            label="Location (if one in mind)"
-            type="text"
-            value={formData.location}
-            doChange={handleLocationChange}
-          />
+          <div>
+            <div className="font-semibold">Location (if one in mind):</div>
+            <input
+              type="text"
+              value={formData.location}
+              onChange={(e) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  location: e.target.value,
+                }));
+              }}
+              className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
+            ></input>
+          </div>
 
           {/* Notes */}
           <div>
