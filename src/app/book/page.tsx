@@ -43,28 +43,35 @@ export default function Book() {
       }));
       return;
     } else if (formData.email == "") {
-        setFormData((prev) => ({
+      setFormData((prev) => ({
         ...prev,
         incompleteMsg: "Please provide an email",
       }));
       return;
     } else if (formData.date.kind == "--" || formData.date.details == "") {
-        setFormData((prev) => ({
+      setFormData((prev) => ({
         ...prev,
         incompleteMsg: "Please specify date",
       }));
       return;
-    } else if (formData.shootType.kind == "--" || (formData.shootType.kind == "Other" && formData.shootType.other == "")) {
-        setFormData((prev) => ({
+    } else if (
+      formData.shootType.kind == "--" ||
+      (formData.shootType.kind == "Other" && formData.shootType.other == "")
+    ) {
+      setFormData((prev) => ({
         ...prev,
         incompleteMsg: "Please specify shoot type",
       }));
       return;
     }
 
-
     try {
-      const docRef = await addDoc(collection(db, "inquiries"), formData);
+      const currentDate = new Date();
+      const updatedFormData = {
+        ...formData,
+        dateSubmitted: currentDate,
+      };
+      const docRef = await addDoc(collection(db, "inquiries"), updatedFormData);
       console.log("Document written with ID: ", docRef.id);
       setFormData((prev) => ({ ...prev, submitted: true }));
     } catch (e) {
@@ -200,7 +207,7 @@ export default function Book() {
 
           {/* Date Type */}
           <div>
-            <div className="font-semibold">Date:</div>
+            <div className="font-semibold">Date of shoot:</div>
             <select
               onChange={(e) =>
                 setFormData((prev) => ({
