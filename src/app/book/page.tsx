@@ -1,8 +1,5 @@
 "use client";
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-
 import Button from "@/components/button";
 
 type FormData = {
@@ -11,7 +8,7 @@ type FormData = {
   date: { kind: string; details: string };
   shootType: { kind: string; other: string };
   people: number;
-  duration: string;
+  duration: number;
   location: string;
   notes: string;
   questions: string;
@@ -26,7 +23,7 @@ export default function Book() {
     date: { kind: "--", details: "" },
     shootType: { kind: "--", other: "" },
     people: 1,
-    duration: "1 hour ($80)",
+    duration: 1,
     location: "",
     notes: "",
     questions: "",
@@ -65,18 +62,18 @@ export default function Book() {
       return;
     }
 
-    try {
-      const currentDate = new Date();
-      const updatedFormData = {
-        ...formData,
-        dateSubmitted: currentDate,
-      };
-      const docRef = await addDoc(collection(db, "inquiries"), updatedFormData);
-      console.log("Document written with ID: ", docRef.id);
-      setFormData((prev) => ({ ...prev, submitted: true }));
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+    const res = await fetch("/api/submit-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    const resMessage = await res.json();
+    if (resMessage.status == 200) {
+      setFormData((prev) => ({
+        ...prev,
+        submitted: true,
+      }));
+    } // To write an else
   };
 
   // Conditional render for date details
@@ -270,10 +267,7 @@ export default function Book() {
               }}
               className="border-1 rounded-sm py-1 px-2 m-0 w-full bg-bg1"
             ></input>
-            <div>
-              (Participating in the photos—any number of friends/fam is welcome
-              to watch)
-            </div>
+            <div>(Participating in the photos)</div>
           </div>
 
           {/* Duration */}
@@ -283,15 +277,15 @@ export default function Book() {
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
-                  duration: e.target.value,
+                  duration: parseFloat(e.target.value),
                 }))
               }
               value={formData.duration}
               className="border-1 rounded-sm p-1 w-full bg-bg1"
             >
-              <option>1 hour ($80)</option>
-              <option>1.5 hours ($120)</option>
-              <option>2 hours ($160)</option>
+              <option value="1">1 hour ($80)</option>
+              <option value="1.5">1.5 hours ($120)</option>
+              <option value="2">2 hours ($160)</option>
             </select>
             <div>
               *Please note that these are base prices and do not include

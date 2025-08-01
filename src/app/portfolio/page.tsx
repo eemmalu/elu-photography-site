@@ -1,3 +1,5 @@
+import { getStorage, ref } from "firebase/storage";
+
 import PortfolioImage from "@/components/portfolioimg";
 
 export default function Portfolio() {
