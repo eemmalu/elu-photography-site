@@ -30,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className={`${mont.variable} flex flex-col min-h-screen`}>
         <NavBar />
+
         <main className="flex-1 overflow-hidden">{children}</main>
       </body>
     </html>
