@@ -76,7 +76,7 @@ export default function Book() {
     } // TODO write an else
 
 
-    const res2 = await fetch("/api/submit-form", {
+    const res2 = await fetch("/api/send-confirmation", {
       method: "POST",
     });
     const resMessage2 = await res2.json();
