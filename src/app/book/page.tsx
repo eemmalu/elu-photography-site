@@ -62,18 +62,27 @@ export default function Book() {
       return;
     }
 
-    const res = await fetch("/api/submit-form", {
+    const res1 = await fetch("/api/submit-form", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
-    const resMessage = await res.json();
-    if (resMessage.status == 200) {
+    const resMessage1 = await res1.json();
+    if (resMessage1.status == 200) {
       setFormData((prev) => ({
         ...prev,
         submitted: true,
       }));
-    } // To write an else
+    } // TODO write an else
+
+
+    const res2 = await fetch("/api/submit-form", {
+      method: "POST",
+    });
+    const resMessage2 = await res2.json();
+    if (resMessage2.status == 500) {
+      alert("a confirmation was not sent")
+    }
   };
 
   // Conditional render for date details

@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
 
-    // To add type checks !!
+    // TODO add type checks !!
 
     await db.collection('inquiries').add({
       ...bookingFormData,
