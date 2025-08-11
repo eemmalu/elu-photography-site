@@ -2,6 +2,7 @@
 
 import Button from "@/components/button";
 import CarouselSlide from "@/components/carouselslide";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -65,11 +66,17 @@ export default function Home() {
         </div>
         {/* Right Side */}
         <div className="basis-4/10 rounded-full">
-          <img
+        <Image src="/emma.jpg"
+            alt="Image of the photographer"
+            width={500}
+            height={500}
+            className="w-full object-contain overflow-hidden rounded-full">
+        </Image>
+          {/* <img
             src="/emma.jpg"
             alt="Image of the photographer"
             className="w-full object-contain overflow-hidden rounded-full"
-          />
+          /> */}
         </div>
       </div>
     </>
